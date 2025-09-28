@@ -25,6 +25,7 @@
   "keywords": [
     "theme",
     "dark",
+    "light",
     "black",
     "golden",
     "vesper",
@@ -44,6 +45,11 @@
         "label": "vesper golden",
         "uiTheme": "vs-dark",
         "path": "./themes/vesper-golden-color-theme.json"
+      },
+      {
+        "label": "vesper golden light",
+        "uiTheme": "vs",
+        "path": "./themes/vesper-golden-light-color-theme.json"
       }
     ]
   },

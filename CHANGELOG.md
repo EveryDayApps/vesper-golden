@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased]
+
+#### Added
+
+- Added light mode variant "vesper golden light" alongside the existing dark mode
+- Light mode maintains the golden accent colors while providing a clean, bright background
+- Updated package keywords to include "light" theme support
+
 ## [0.0.1] - 2025-06-01
 
 #### Added
