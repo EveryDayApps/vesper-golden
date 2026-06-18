@@ -20,7 +20,11 @@ A Visual Studio Code theme inspired by Vesper with a golden touch, available in 
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/narayann7/vesper-golden?style=social">
 
   <a href="https://marketplace.visualstudio.com/items?itemName=narayann7.vesper-golden">
-  <img src="https://badgen.net/vs-marketplace/d/narayann7.vesper-golden" alt="Downloads" />
+  <img src="https://badgen.net/vs-marketplace/d/narayann7.vesper-golden?label=vs%20marketplace" alt="VS Marketplace Downloads" />
+</a>
+
+  <a href="https://open-vsx.org/extension/narayann7/vesper-golden">
+  <img src="https://img.shields.io/open-vsx/dt/narayann7/vesper-golden?style=flat-square&label=open%20vsx" alt="Open VSX Downloads" />
 </a>
 
 </div>
@@ -51,7 +55,7 @@ To enhance your experience with the Vesper Golden theme, consider adding the fol
 
 ```json
 {
-  "workbench.colorTheme": "vesper golden",
+  "workbench.colorTheme": "vesper golden dark",
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.letterSpacing": 0.5,
@@ -71,11 +75,11 @@ To enhance your experience with the Vesper Golden theme, consider adding the fol
 }
 ```
 
-**Note:** You can choose between `"vesper golden"` (dark mode) and `"vesper golden light"` (light mode) for the `workbench.colorTheme` setting.
+**Note:** You can choose between `"vesper golden dark"` (dark mode) and `"vesper golden light"` (light mode) for the `workbench.colorTheme` setting.
 
 ### ‍💻 Author
 
-- [@narayann7](https://github.com/narayann7)
+[@narayann7](https://github.com/narayann7)
 
 ### ⭐️ Contribute
 
