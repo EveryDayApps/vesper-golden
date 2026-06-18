@@ -1,12 +1,16 @@
 {
   "name": "vesper-golden",
-  "displayName": "vesper golden",
+  "displayName": "Vesper Golden",
   "id": "vesper-golden",
   "publisher": "narayann7",
-  "description": "Visual Studio Code theme inspired by Vesper with a golden touch.",
-  "version": "0.0.7",
+  "description": "Visual Studio Code theme inspired by Vesper with a golden touch — dark and light modes.",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.43.0"
+  },
+  "galleryBanner": {
+    "color": "#0A0908",
+    "theme": "dark"
   },
   "author": {
     "name": "Narayan Reddy",
@@ -38,6 +42,15 @@
   ],
   "bugs": {
     "url": "https://github.com/narayann7/vesper-golden/issues"
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish:vsce": "vsce publish",
+    "publish:ovsx": "ovsx publish"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.2.0",
+    "ovsx": "^0.10.0"
   },
   "contributes": {
     "themes": [

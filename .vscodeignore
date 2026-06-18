@@ -3,3 +3,8 @@
 .gitignore
 images/**
 vsc-extension-quickstart.md
+.claude/**
+todo.md
+*.vsix
+package-lock.json
+.DS_Store

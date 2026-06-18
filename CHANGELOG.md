@@ -1,12 +1,23 @@
 # Change Log
 
-## [Unreleased]
+## [1.0.0] - 2026-06-18
+
+First stable release. Now ships **two** themes: `Vesper Golden Dark` and `Vesper Golden Light`.
 
 #### Added
 
-- Added light mode variant "vesper golden light" alongside the existing dark mode
-- Light mode maintains the golden accent colors while providing a clean, bright background
-- Updated package keywords to include "light" theme support
+- New light theme variant `Vesper Golden Light` — keeps the golden accents on a clean, bright background.
+- Dark + light syntax/contrast pass: WCAG-readable comments, real terminal green (was gold), bracket-pair colorization, and visible markdown fenced code blocks.
+- Updated package keywords to include light theme support.
+
+#### Changed
+
+- **Breaking:** theme labels renamed to `Vesper Golden Dark` / `Vesper Golden Light`. Update your `workbench.colorTheme` setting (old value `"vesper golden"` no longer matches).
+- Renamed dark theme file and preview images to a dark/light naming convention.
+
+#### Fixed
+
+- Removed duplicate `Comment` token rule, dead root-level bracket colors, and off-palette selection highlight in both themes.
 
 ## [0.0.1] - 2025-06-01
 
