@@ -6,7 +6,7 @@
 <h1 align="center">Vesper Golden</h1>
 
 <div align="center">
-A Visual Studio Code theme inspired by Vesper with a golden touch.
+A Visual Studio Code theme inspired by Vesper with a golden touch, available in both dark and light modes.
 </div>
 
 <br />
@@ -70,6 +70,8 @@ To enhance your experience with the Vesper Golden theme, consider adding the fol
   "editor.bracketPairColorization.enabled": true
 }
 ```
+
+**Note:** You can choose between `"vesper golden"` (dark mode) and `"vesper golden light"` (light mode) for the `workbench.colorTheme` setting.
 
 ### ‍💻 Author
 
