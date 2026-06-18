@@ -31,9 +31,17 @@ A Visual Studio Code theme inspired by Vesper with a golden touch, available in 
 
 ### 📷 Preview
 
-![image](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/demo_one.png)
-![image](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/demo_two.png)
-![image](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/demo_three.png)
+#### 🌙 Dark
+
+![dark preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/dark_one.png)
+![dark preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/dark_two.png)
+![dark preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/dark_three.png)
+
+#### ☀️ Light
+
+![light preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/light_one.png)
+![light preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/light_two.png)
+![light preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/light_three.png)
 
 ### 📦 Installation
 
@@ -55,7 +63,7 @@ To enhance your experience with the Vesper Golden theme, consider adding the fol
 
 ```json
 {
-  "workbench.colorTheme": "vesper golden dark",
+  "workbench.colorTheme": "Vesper Golden Dark",
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.letterSpacing": 0.5,
@@ -75,7 +83,7 @@ To enhance your experience with the Vesper Golden theme, consider adding the fol
 }
 ```
 
-**Note:** You can choose between `"vesper golden dark"` (dark mode) and `"vesper golden light"` (light mode) for the `workbench.colorTheme` setting.
+**Note:** You can choose between `"Vesper Golden Dark"` (dark mode) and `"Vesper Golden Light"` (light mode) for the `workbench.colorTheme` setting.
 
 ### ‍💻 Author
 

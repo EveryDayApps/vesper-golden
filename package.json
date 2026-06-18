@@ -42,12 +42,12 @@
   "contributes": {
     "themes": [
       {
-        "label": "vesper golden dark",
+        "label": "Vesper Golden Dark",
         "uiTheme": "vs-dark",
         "path": "./themes/vesper-golden-dark-color-theme.json"
       },
       {
-        "label": "vesper golden light",
+        "label": "Vesper Golden Light",
         "uiTheme": "vs",
         "path": "./themes/vesper-golden-light-color-theme.json"
       }
