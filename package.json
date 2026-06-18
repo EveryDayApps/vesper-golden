@@ -17,10 +17,10 @@
     "email": "hey@narayann.dev",
     "url": "https://narayann.dev"
   },
-  "homepage": "https://github.com/narayann7/vesper-golden?tab=readme-ov-file#vesper-golden",
+  "homepage": "https://github.com/EveryDayApps/vesper-golden?tab=readme-ov-file#vesper-golden",
   "repository": {
     "type": "git",
-    "url": "https://github.com/narayann7/vesper-golden.git"
+    "url": "https://github.com/EveryDayApps/vesper-golden.git"
   },
   "icon": "logo.png",
   "categories": [
@@ -41,7 +41,7 @@
     "developer"
   ],
   "bugs": {
-    "url": "https://github.com/narayann7/vesper-golden/issues"
+    "url": "https://github.com/EveryDayApps/vesper-golden/issues"
   },
   "scripts": {
     "package": "vsce package",

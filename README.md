@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/narayann7/vesper-golden">
-    <img alt="vesper-golden" height="80" src="https://raw.githubusercontent.com/narayann7/vesper-golden/main/logo.png">
+  <a href="https://github.com/EveryDayApps/vesper-golden">
+    <img alt="vesper-golden" height="80" src="https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/logo.png">
   </a>
 </p>
 <h1 align="center">Vesper Golden</h1>
@@ -13,11 +13,11 @@ A Visual Studio Code theme inspired by Vesper with a golden touch, available in 
 
 <div align="center">
 
-  <img src="https://img.shields.io/github/license/narayann7/vesper-golden?style=flat-square" alt="License" />
+  <img src="https://img.shields.io/github/license/EveryDayApps/vesper-golden?style=flat-square" alt="License" />
 
-  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/narayann7/vesper-golden?style=flat-square">
+  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/EveryDayApps/vesper-golden?style=flat-square">
 
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/narayann7/vesper-golden?style=social">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/EveryDayApps/vesper-golden?style=social">
 
   <a href="https://marketplace.visualstudio.com/items?itemName=narayann7.vesper-golden">
   <img src="https://badgen.net/vs-marketplace/d/narayann7.vesper-golden?label=vs%20marketplace" alt="VS Marketplace Downloads" />
@@ -33,15 +33,15 @@ A Visual Studio Code theme inspired by Vesper with a golden touch, available in 
 
 #### 🌙 Dark
 
-![dark preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/dark_one.png)
-![dark preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/dark_two.png)
-![dark preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/dark_three.png)
+![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_one.png)
+![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_two.png)
+![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_three.png)
 
 #### ☀️ Light
 
-![light preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/light_one.png)
-![light preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/light_two.png)
-![light preview](https://raw.githubusercontent.com/narayann7/vesper-golden/main/images/light_three.png)
+![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_one.png)
+![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_two.png)
+![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_three.png)
 
 ### 📦 Installation
 
