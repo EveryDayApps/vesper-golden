@@ -10,7 +10,7 @@ Targets where a "Vesper Golden" theme family can ship. Grouped by effort and rea
 | **Cursor** | VS Code JSON (same) | Uses OpenVSX | Free: same package installs. |
 | **Windsurf** | VS Code JSON (same) | OpenVSX | Free: same package. |
 | **VSCodium** | VS Code JSON (same) | OpenVSX | Free: same package. |
-| **JetBrains (IntelliJ/PyCharm/WebStorm/etc.)** | `.xml` (`.icls` editor scheme + `.theme.json` UI) | JetBrains Marketplace | Big audience. Separate plugin project. |
+| **JetBrains (IntelliJ/PyCharm/WebStorm/etc.)** | `.xml` editor scheme + `.theme.json` UI | JetBrains Marketplace | Big audience. Separate plugin project. |
 | **Sublime Text** | `.sublime-color-scheme` (JSON) or `.tmTheme` (XML plist) | Package Control | tmTheme is portable base format. |
 | **Zed** | `.json` theme | Zed extensions repo | Growing fast. Simple JSON. |
 | **Neovim** | Lua colorscheme | GitHub (lazy/packer) | Highest dev-cred. Lua + highlight groups. |
