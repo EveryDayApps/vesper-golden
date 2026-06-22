@@ -1,0 +1,29 @@
+<idea-plugin>
+  <id>com.narayann7.vesper-golden</id>
+  <name>Vesper Golden</name>
+  <!-- Version is stamped at build time from gradle.properties (pack.sh + Gradle). This is a fallback. -->
+  <version>1.0.0</version>
+  <vendor email="laxminarayanreddy432@gmail.com" url="https://github.com/EveryDayApps/vesper-golden">narayann7</vendor>
+
+  <description><![CDATA[
+    Vesper Golden: a warm golden theme in dark and light variants. Each includes the
+    full IDE UI theme and a matching editor color scheme. Ported from the VS Code theme
+    of the same name.
+    <br/>
+    Source and issues: <a href="https://github.com/EveryDayApps/vesper-golden">github.com/EveryDayApps/vesper-golden</a>
+  ]]></description>
+
+  <!-- since-build 233 = 2023.3+. Open upper bound so newer Android Studio keeps loading it. -->
+  <idea-version since-build="233"/>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="vesper-golden-dark" path="/themes/VesperGoldenDark.theme.json"/>
+    <themeProvider id="vesper-golden-light" path="/themes/VesperGoldenLight.theme.json"/>
+    <!-- Register the editor schemes so they appear in Settings > Editor > Color Scheme
+         and apply with each theme. path has no extension; the files are *.xml. -->
+    <bundledColorScheme path="/themes/VesperGoldenDark"/>
+    <bundledColorScheme path="/themes/VesperGoldenLight"/>
+  </extensions>
+</idea-plugin>

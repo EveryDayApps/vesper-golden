@@ -1,0 +1,112 @@
+{
+  "$comment": "Canonical color source for Vesper Golden. Every platform port derives its colors from this file. 'syntax' values are palette keys, not hex: resolve syntax[role] -> palette[variant][key] -> hex. Edit colors here first, then sync the ports.",
+  "name": "Vesper Golden",
+  "variants": {
+    "dark": {
+      "type": "dark",
+      "palette": {
+        "bg": "#0A0908",
+        "bgAlt": "#0D0C0C",
+        "bgInput": "#1C1C1C",
+        "border": "#1A1A1A",
+        "fg": "#FFFFFF",
+        "muted": "#AFACA7",
+        "dim": "#707070",
+        "comment": "#9A8B73",
+        "accent": "#FFBF3B",
+        "accentHover": "#FFCFA8",
+        "accentText": "#FFBF3B",
+        "string": "#F2E7DC",
+        "green": "#7CB342",
+        "red": "#FF8080",
+        "blue": "#74B3F7"
+      },
+      "syntax": {
+        "comment": "comment",
+        "keyword": "muted",
+        "function": "accentText",
+        "class": "accentText",
+        "type": "muted",
+        "interface": "string",
+        "number": "accentText",
+        "constant": "accentText",
+        "string": "string",
+        "variable": "fg",
+        "parameter": "muted",
+        "operator": "muted",
+        "tag": "accentText"
+      },
+      "ansi": {
+        "black": "#0A0908",
+        "red": "#FF8080",
+        "green": "#7CB342",
+        "yellow": "#FFBF3B",
+        "blue": "#74B3F7",
+        "magenta": "#E8D5B7",
+        "cyan": "#F2E7DC",
+        "white": "#FFFFFF",
+        "brightBlack": "#505050",
+        "brightRed": "#FF9999",
+        "brightGreen": "#9CCC65",
+        "brightYellow": "#FFCFA8",
+        "brightBlue": "#90C4FF",
+        "brightMagenta": "#F4E4BC",
+        "brightCyan": "#FFF9F2",
+        "brightWhite": "#FFFFFF"
+      }
+    },
+    "light": {
+      "type": "light",
+      "palette": {
+        "bg": "#FEFEFE",
+        "bgAlt": "#F5F5F5",
+        "bgInput": "#FFFFFF",
+        "border": "#E0E0E0",
+        "fg": "#2C2C2C",
+        "muted": "#616161",
+        "dim": "#ADADAD",
+        "comment": "#7A6248",
+        "accent": "#FFBF3B",
+        "accentHover": "#DAA520",
+        "accentText": "#B8860B",
+        "string": "#5D4037",
+        "green": "#388E3C",
+        "red": "#D32F2F",
+        "blue": "#1976D2"
+      },
+      "syntax": {
+        "comment": "comment",
+        "keyword": "muted",
+        "function": "accentText",
+        "class": "accentText",
+        "type": "muted",
+        "interface": "string",
+        "number": "accentText",
+        "constant": "accentText",
+        "string": "string",
+        "variable": "fg",
+        "parameter": "muted",
+        "operator": "muted",
+        "tag": "accentText"
+      },
+      "ansi": {
+        "black": "#2C2C2C",
+        "red": "#D32F2F",
+        "green": "#388E3C",
+        "yellow": "#B8860B",
+        "blue": "#1976D2",
+        "magenta": "#7B1FA2",
+        "cyan": "#00796B",
+        "white": "#FAFAFA",
+        "brightBlack": "#616161",
+        "brightRed": "#F44336",
+        "brightGreen": "#4CAF50",
+        "brightYellow": "#DAA520",
+        "brightBlue": "#2196F3",
+        "brightMagenta": "#9C27B0",
+        "brightCyan": "#009688",
+        "brightWhite": "#FFFFFF"
+      }
+    }
+  }
+}

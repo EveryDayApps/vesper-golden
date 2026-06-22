@@ -1,0 +1,11 @@
+# Gradle / IntelliJ plugin build output
+.gradle/
+build/
+.intellijPlatform/
+
+# IDE project metadata
+.idea/
+*.iml
+out/
+
+# Note: the wrapper jar (gradle/wrapper/) IS committed so ./gradlew runs. Do not ignore it.

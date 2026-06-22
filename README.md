@@ -1,98 +1,50 @@
-<p align="center">
-  <a href="https://github.com/EveryDayApps/vesper-golden">
-    <img alt="vesper-golden" height="80" src="https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/logo.png">
-  </a>
-</p>
-<h1 align="center">Vesper Golden</h1>
-
 <div align="center">
-A Visual Studio Code theme inspired by Vesper with a golden touch, available in both dark and light modes.
+  <img alt="vesper-golden" height="80" src="https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/logo.png">
+  <h1>Vesper Golden</h1>
+  <p>A warm gold-on-black theme. Dark and light.</p>
 </div>
 
-<br />
+Vesper Golden started as a VS Code theme and is growing into a family of ports that share one palette across editors, terminals, and tools.
 
-<div align="center">
+## Platforms
 
-  <img src="https://img.shields.io/github/license/EveryDayApps/vesper-golden?style=flat-square" alt="License" />
+| Platform | Status | Where |
+|----------|--------|-------|
+| VS Code (and Cursor, Windsurf, VSCodium) | Released | [`platforms/vscode`](platforms/vscode) |
+| JetBrains / Android Studio | Buildable locally | [`platforms/jetbrains`](platforms/jetbrains) |
 
-  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/EveryDayApps/vesper-golden?style=flat-square">
+More ports (terminals, and other tools) are tracked in [`docs/theme-platforms.md`](docs/theme-platforms.md).
 
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/EveryDayApps/vesper-golden?style=social">
+## Build
 
-  <a href="https://marketplace.visualstudio.com/items?itemName=narayann7.vesper-golden">
-  <img src="https://badgen.net/vs-marketplace/d/narayann7.vesper-golden?label=vs%20marketplace" alt="VS Marketplace Downloads" />
-</a>
+`scripts/build.sh` builds any platform and drops the artifact in `builds/`. Run it with no arguments for a menu, or name a target:
 
-  <a href="https://open-vsx.org/extension/narayann7/vesper-golden">
-  <img src="https://img.shields.io/open-vsx/dt/narayann7/vesper-golden?style=flat-square&label=open%20vsx" alt="Open VSX Downloads" />
-</a>
-
-</div>
-
-### 📷 Preview
-
-#### 🌙 Dark
-
-![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_one.png)
-![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_two.png)
-![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_three.png)
-
-#### ☀️ Light
-
-![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_one.png)
-![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_two.png)
-![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_three.png)
-
-### 📦 Installation
-
-You can install the **Vesper Golden** theme directly from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=narayann7.vesper-golden) or [Open Vsx](https://open-vsx.org/extension/narayann7/vesper-golden)
-
-or by using the command line.
-
-To install via the command line, run the following command in your terminal:
-
-```bash
-code --install-extension narayann7.vesper-golden
+```
+scripts/build.sh            # interactive menu
+scripts/build.sh all        # every platform
+scripts/build.sh vscode     # just one
 ```
 
-This command utilizes the `code` CLI to install the extension by its identifier, as detailed in the [Visual Studio Code documentation](https://code.visualstudio.com/docs/getstarted/extensions#_command-line-extension-management).
+## Install
 
-### ⚙️ Recommended Settings
+- **VS Code**: search "Vesper Golden" in the Extensions view, or see [`platforms/vscode/README.md`](platforms/vscode/README.md).
+- **Android Studio / JetBrains**: build and load the plugin by following [`docs/install.md`](docs/install.md).
 
-To enhance your experience with the Vesper Golden theme, consider adding the following settings to your `settings.json` file:
+## Repo layout
 
-```json
-{
-  "workbench.colorTheme": "Vesper Golden Dark",
-  "editor.fontFamily": "Fira Code",
-  "editor.fontLigatures": true,
-  "editor.letterSpacing": 0.5,
-  "editor.tabSize": 3,
-  "editor.cursorStyle": "line",
-  "editor.fontWeight": "400",
-  "editor.autoIndent": "full",
-  "editor.lineHeight": 26,
-  "editor.fontSize": 17,
-  "editor.stickyTabStops": true,
-  "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorBlinking": "smooth",
-  "editor.minimap.size": "fit",
-  "editor.minimap.enabled": true,
-  "editor.semanticHighlighting.enabled": true,
-  "editor.bracketPairColorization.enabled": true
-}
+```
+palette.json   canonical color database (source of truth for every port)
+platforms/
+  vscode/      VS Code extension (released flagship port)
+  jetbrains/   IntelliJ-platform plugin: UI theme + editor scheme
+scripts/       build.sh: build any platform into builds/
+docs/          install guide, release runbook, platform map
+images/        screenshots used by the READMEs
+builds/        build output (gitignored)
 ```
 
-**Note:** You can choose between `"Vesper Golden Dark"` (dark mode) and `"Vesper Golden Light"` (light mode) for the `workbench.colorTheme` setting.
+`palette.json` is the color source. Every port derives from it, so a color change starts there and flows outward.
 
-### ‍💻 Author
+## License
 
-[@narayann7](https://github.com/narayann7)
-
-### ⭐️ Contribute
-
-If you would like to contribute to this project, please feel free to open an issue or submit a pull request. Contributions are always welcome!
-
-### 📄 License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+[MIT](LICENSE)
