@@ -83,7 +83,7 @@ vesper-golden/
 |----------|-------|--------|--------|
 | VS Code (also Cursor, Windsurf, VSCodium) | High | Released | `*-color-theme.json` |
 | JetBrains / Android Studio | High | Builds and installs locally (dark + light) | `*.theme.json` UI + `*.xml` editor scheme |
-| Obsidian | Medium | Builds and installs locally (dark + light) | `manifest.json` + `theme.css` |
+| Obsidian | Medium | Released (community gallery) | `manifest.json` + `theme.css` |
 
 More candidates (terminals, Slack, Obsidian, and so on) are tracked in `theme-platforms.md`.
 

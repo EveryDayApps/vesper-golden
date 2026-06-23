@@ -90,6 +90,14 @@ To uninstall: **Settings > Plugins**, find **Vesper Golden**, **Uninstall**, res
 
 A full theme: app chrome, markdown reading and edit views, and code-block syntax. Ships both variants (Dark and Light), switched with Obsidian's own light/dark toggle.
 
+### Install from the community gallery (recommended)
+
+1. In Obsidian, open **Settings > Appearance > Themes**, click **Manage**.
+2. Search **Vesper Golden**, click **Install and use**.
+3. Toggle the **Base color scheme** (Light / Dark) to switch variants.
+
+Listing: https://community.obsidian.md/themes/vesper-golden. Updates arrive through **Manage > Check for updates**.
+
 ### Build the theme zip
 
 From the repo root:
