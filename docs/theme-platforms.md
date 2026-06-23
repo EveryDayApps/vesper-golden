@@ -42,7 +42,7 @@ Targets where a "Vesper Golden" theme family can ship. Grouped by effort and rea
 |----------|--------|
 | **Slack** | sidebar hex string (paste) |
 | **Discord** (BetterDiscord) | CSS theme |
-| **Obsidian** | CSS snippet / theme |
+| **Obsidian** (shipped) | full `theme.css` theme, in the community gallery |
 | **Notion** (unofficial) | CSS |
 | **GitHub** (Refined/userstyle) | Stylus CSS |
 | **Firefox** | `manifest.json` (WebExtension theme) |
@@ -71,7 +71,7 @@ Targets where a "Vesper Golden" theme family can ship. Grouped by effort and rea
 4. **JetBrains**: large separate audience.
 5. **Neovim + tmux**: dev-cred, screenshot-friendly combos.
 6. **Sublime `.tmTheme`**: unlocks bat + delta for free.
-7. Long tail (Slack/Obsidian/Discord) as community asks.
+7. Long tail (Slack/Discord and the rest) as community asks. Obsidian is already shipped.
 
 ## Generator strategy
 

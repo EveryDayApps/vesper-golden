@@ -4,7 +4,7 @@ A single place to understand Vesper Golden: what it is, how the repo is laid out
 
 ## What it is
 
-Vesper Golden is a warm gold-on-black code theme. It began as a VS Code theme and is growing into a family of ports that share one palette across editors, terminals, and tools. Dark is the primary variant; a light variant exists for VS Code and is planned for the other ports.
+Vesper Golden is a warm gold-on-black code theme. It began as a VS Code theme and is growing into a family of ports that share one palette across editors, terminals, and tools. Dark is the primary variant; a light variant ships for every current port (VS Code, JetBrains, Obsidian).
 
 The look: near-black background (`#0A0908`), gold accent (`#FFBF3B`) on functions, classes, numbers, and the caret, muted warm grey (`#AFACA7`) for keywords and punctuation, cream (`#F2E7DC`) strings, and italic gold-brown (`#9A8B73`) comments.
 
@@ -46,7 +46,7 @@ vesper-golden/
 ├── docs/
 │   ├── context.md         this file
 │   ├── install.md         how to install each port locally
-│   ├── release_plan.md    VS Code Marketplace + Open VSX release runbook
+│   ├── release_plan.md    release runbook for all tracks (VS Code, JetBrains, Obsidian)
 │   └── theme-platforms.md map of every platform a theme could ship to
 └── platforms/
     ├── vscode/            the VS Code extension (the released flagship port)
@@ -114,7 +114,7 @@ builds/vesper-golden-obsidian-<version>.zip
 
 - **obsidian**: runs `platforms/obsidian/theme/pack.sh`, which stages a `Vesper Golden/` folder (`manifest.json` + `theme.css`) and zips it into `builds/`. Needs `zip`, no network, nothing compiled. Install by extracting that folder into a vault's `.obsidian/themes/`. The version comes from the `version` field in `manifest.json`.
 
-  The Obsidian community gallery reads `manifest.json` and `theme.css` from the **root of the default branch**, so copies of both live at the repo root and mirror `platforms/obsidian/theme/`. They are the source the gallery serves: re-copy them on every Obsidian release (`cp platforms/obsidian/theme/{manifest.json,theme.css} .`) so the published version matches the port.
+  Publishing is via a **GitHub Release**: the Obsidian community directory reads `manifest.json` + `theme.css` from the release assets (tag must equal the manifest version, bare semver), and the listing is submitted once at community.obsidian.md. Root copies of both files mirror `platforms/obsidian/theme/` for convenience (BRAT beta installs, quick inspection); re-sync them each release with `cp platforms/obsidian/theme/{manifest.json,theme.css} .`. They are optional, not what the directory consumes. Full steps in `release_plan.md` (Part 3).
 
 There is also `./gradlew buildPlugin` for the JetBrains port. That is the official path but it downloads the IntelliJ SDK (around 1 GB) and writes to gradle's own `build/distributions/` rather than `builds/`. Use `pack.sh` for local work; reach for Gradle when publishing or running `./gradlew runIde` for a live sandbox IDE.
 
@@ -145,5 +145,5 @@ Full steps per platform are in `install.md`. Short version:
 
 - `context.md` (this file): project overview, build, conventions.
 - `install.md`: install each port locally, with iteration and uninstall steps.
-- `release_plan.md`: runbook for publishing the VS Code extension to the Marketplace and Open VSX.
+- `release_plan.md`: release runbook for all three tracks (VS Code to Marketplace + Open VSX, JetBrains to the JetBrains Marketplace, Obsidian to the community directory).
 - `theme-platforms.md`: the full map of platforms a theme could target, grouped by effort and reach.
