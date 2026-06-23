@@ -37,6 +37,8 @@ vesper-golden/
 ├── README.md              repo landing page (multi-platform overview)
 ├── LICENSE                MIT
 ├── logo.png               brand mark used by the READMEs
+├── manifest.json          Obsidian gallery copy (mirrors platforms/obsidian/theme/manifest.json)
+├── theme.css              Obsidian gallery copy (mirrors platforms/obsidian/theme/theme.css)
 ├── images/                screenshots referenced by raw GitHub URLs
 ├── scripts/
 │   └── build.sh           build any platform into builds/
@@ -111,6 +113,8 @@ builds/vesper-golden-obsidian-<version>.zip
 - **jetbrains**: runs `platforms/jetbrains/plugin/pack.sh`, which jars the plugin resources and zips the `<plugin>/lib/<jar>` layout the IDE expects. Stages in a temp dir and writes straight to `builds/`. Needs `jar` and `zip`, no network, no IntelliJ SDK. A theme plugin is pure resources, so nothing is compiled.
 
 - **obsidian**: runs `platforms/obsidian/theme/pack.sh`, which stages a `Vesper Golden/` folder (`manifest.json` + `theme.css`) and zips it into `builds/`. Needs `zip`, no network, nothing compiled. Install by extracting that folder into a vault's `.obsidian/themes/`. The version comes from the `version` field in `manifest.json`.
+
+  The Obsidian community gallery reads `manifest.json` and `theme.css` from the **root of the default branch**, so copies of both live at the repo root and mirror `platforms/obsidian/theme/`. They are the source the gallery serves: re-copy them on every Obsidian release (`cp platforms/obsidian/theme/{manifest.json,theme.css} .`) so the published version matches the port.
 
 There is also `./gradlew buildPlugin` for the JetBrains port. That is the official path but it downloads the IntelliJ SDK (around 1 GB) and writes to gradle's own `build/distributions/` rather than `builds/`. Use `pack.sh` for local work; reach for Gradle when publishing or running `./gradlew runIde` for a live sandbox IDE.
 
