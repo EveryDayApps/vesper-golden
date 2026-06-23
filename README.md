@@ -16,7 +16,7 @@ One palette, shared across editors, terminals, and tools.
 <br/>
 
 <a href="https://narayann.dev/apps/vesper-golden">
-  <img alt="Vesper Golden preview" src="https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/site/image.png" width="820">
+  <img alt="Vesper Golden preview" src="https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/site/screenshot.png" width="820">
 </a>
 
 <br/>
