@@ -1,11 +1,12 @@
 # Release Runbook: Vesper Golden
 
-A repeatable playbook to release each platform. Two independent tracks:
+A repeatable playbook to release each platform. Three independent tracks:
 
 - **Part 1: VS Code** to the **VS Code Marketplace** and **Open VSX**.
 - **Part 2: JetBrains** (Android Studio, IntelliJ, and the rest) to the **JetBrains Marketplace**.
+- **Part 3: Obsidian** to the **Obsidian community theme gallery**.
 
-The two ship on their own versions and schedules; you do not have to release them together. Replace `<X.Y.Z>` with the target version. Any AI agent or human can execute a track top-to-bottom.
+The tracks ship on their own versions and schedules; you do not have to release them together. Replace `<X.Y.Z>` with the target version. Any AI agent or human can execute a track top-to-bottom.
 
 ---
 
@@ -207,6 +208,102 @@ Prereq (one-time): a vendor account at plugins.jetbrains.com, and a **permanent 
 
 ---
 
+# Part 3: Obsidian
+
+Publishes the theme to the **Obsidian community theme gallery** (Settings > Appearance > Themes > Manage).
+
+> How Obsidian fetches themes: the gallery reads `manifest.json` and `theme.css` from the **root of the default branch** of a public GitHub repo. There is no release-asset step (unlike plugins). Our files live at `platforms/obsidian/theme/`, not the repo root, so the gallery cannot read this monorepo directly. See O3.0 below for the one-time fix.
+
+---
+
+## O0. Choose the version
+
+Semver, same rules as Part 1 (renaming the theme is breaking because it changes what users have selected).
+
+Single source of truth: the `version` field in `platforms/obsidian/theme/manifest.json`. `pack.sh` reads it and stamps the zip name.
+- [ ] Set `"version": "<X.Y.Z>"` in `manifest.json`.
+
+`minAppVersion` in the same file gates which Obsidian builds offer the theme. Raise it only if you depend on a newer CSS variable.
+
+---
+
+## O3.0 Publishing repo (one-time)
+
+The gallery needs `manifest.json` + `theme.css` at a repo root. Pick one, once, and reuse it every release:
+
+- [ ] **Mirror repo (recommended)**: a dedicated public repo (e.g. `narayann7/vesper-golden-obsidian`) holding only the theme files at its root, plus a `README.md`, `LICENSE`, and screenshot. A release step copies `platforms/obsidian/theme/{manifest.json,theme.css}` to that repo root and pushes. Keeps this monorepo's layout clean.
+- [ ] **Files at monorepo root (not recommended)**: copy the two files to the repo root and point the gallery at `narayann7/vesper-golden`. Pollutes the root and competes with the multi-platform layout.
+
+Record the chosen `repo` as `<obsidian-repo>` for the steps below.
+
+---
+
+## O1. Apply file changes
+
+### O1.1 `manifest.json`
+- [ ] `version` set (O0), `name` is exactly `Vesper Golden` (this is what users select; renaming breaks them).
+- [ ] `author` and `authorUrl` point at the current GitHub account/repo.
+- [ ] `minAppVersion` is the lowest Obsidian build you support.
+
+### O1.2 `theme.css`
+- [ ] Colors are in step with `palette.json` at the repo root (both `.theme-dark` and `.theme-light` blocks).
+
+### O1.3 Screenshot
+- [ ] A current screenshot exists for the gallery entry (PNG, at least 512px wide, shows the editor + chrome). The gallery entry references it by raw URL.
+
+### O1.4 Validate
+- [ ] `manifest.json` parses: `node -e "require('./platforms/obsidian/theme/manifest.json')"` (or `python3 -m json.tool`).
+- [ ] `theme.css` loads cleanly in a real vault (no console errors in Obsidian's dev tools).
+
+---
+
+## O2. Build & verify locally
+
+- [ ] Build the zip from the repo root: `scripts/build.sh obsidian` → `builds/vesper-golden-obsidian-<X.Y.Z>.zip`. No network, nothing compiled.
+- [ ] Extract into a test vault's `.obsidian/themes/` and enable **Vesper Golden** under Settings > Appearance.
+- [ ] Toggle the **Base color scheme** (Light / Dark) and eyeball both: editor text, headings, links, inline + block code, tables, tags, sidebars, tabs.
+
+---
+
+## O3. Commit, sync publishing repo, tag
+
+- [ ] Commit and push the monorepo changes.
+- [ ] Sync the publishing repo from O3.0: copy `platforms/obsidian/theme/{manifest.json,theme.css}` to `<obsidian-repo>` root, commit, push to its default branch.
+- [ ] Tag the shipped monorepo commit, prefixed to avoid colliding with the other tracks:
+  ```
+  git tag -a obsidian-v<X.Y.Z> -m "Vesper Golden (Obsidian) v<X.Y.Z>"
+  git push origin obsidian-v<X.Y.Z>
+  ```
+
+---
+
+## O4. Publish to the Obsidian gallery
+
+> **First release** adds the theme to the gallery via PR and is **reviewed by the Obsidian team** (can take days to weeks). **Updates** need no PR: bump `version` in the publishing repo's `manifest.json` and the gallery picks it up automatically.
+
+- [ ] **First release**: fork `obsidianmd/obsidian-releases`, add an entry to `community-css-themes.json`:
+  ```json
+  {
+    "name": "Vesper Golden",
+    "author": "narayann7",
+    "repo": "<obsidian-repo>",
+    "screenshot": "<raw-screenshot-url>",
+    "modes": ["dark", "light"]
+  }
+  ```
+  Open a PR and follow the checklist in their PR template (theme guidelines, no external network calls, license present).
+- [ ] **Updates**: just push the new `manifest.json` version to `<obsidian-repo>` (done in O3). No PR.
+
+---
+
+## O5. Post-release
+
+- [ ] First release: PR merged, theme appears in Settings > Appearance > Themes > Manage.
+- [ ] Updates: gallery shows `<X.Y.Z>` within a day; users get the update prompt in Manage.
+- [ ] Install from the gallery in a clean vault and smoke-test both variants.
+
+---
+
 # Appendix
 
 ## Secrets checklist
@@ -220,5 +317,6 @@ Prereq (one-time): a vendor account at plugins.jetbrains.com, and a **permanent 
 ## Optional: CI automation (future)
 - **VS Code**: GitHub Action on `v*` tag push: `npm ci` → `vsce package` → `vsce publish` + `ovsx publish`, using repo secrets `VSCE_PAT` and `OVSX_PAT`.
 - **JetBrains**: GitHub Action on `jetbrains-v*` tag push: `./gradlew buildPlugin` → `./gradlew publishPlugin`, using repo secret `PUBLISH_TOKEN` (and the signing secrets if enabled).
+- **Obsidian**: GitHub Action on `obsidian-v*` tag push: copy `platforms/obsidian/theme/{manifest.json,theme.css}` into the publishing repo and push (using a deploy key or PAT). No marketplace token: gallery updates pull from the repo. First-release PR stays manual.
 
-Both remove the manual token handling above.
+The first two remove the manual token handling above; Obsidian needs no marketplace secret at all.

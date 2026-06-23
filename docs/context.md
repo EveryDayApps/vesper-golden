@@ -54,19 +54,25 @@ vesper-golden/
     │   ├── CHANGELOG.md
     │   ├── LICENSE, logo.png
     │   └── .vscode/, .vscodeignore
-    └── jetbrains/         IntelliJ-platform plugin (Android Studio, IntelliJ, etc.)
+    ├── jetbrains/         IntelliJ-platform plugin (Android Studio, IntelliJ, etc.)
+    │   ├── README.md
+    │   └── plugin/
+    │       ├── pack.sh                  build the zip without the IntelliJ SDK
+    │       ├── build.gradle.kts         official Gradle build (needs the SDK)
+    │       ├── gradle/, gradlew*        committed wrapper
+    │       └── src/main/resources/
+    │           ├── META-INF/plugin.xml
+    │           └── themes/
+    │               ├── VesperGoldenDark.theme.json    dark UI theme
+    │               ├── VesperGoldenDark.xml           dark editor scheme
+    │               ├── VesperGoldenLight.theme.json   light UI theme
+    │               └── VesperGoldenLight.xml          light editor scheme
+    └── obsidian/          Obsidian theme (dark + light in one theme.css)
         ├── README.md
-        └── plugin/
-            ├── pack.sh                  build the zip without the IntelliJ SDK
-            ├── build.gradle.kts         official Gradle build (needs the SDK)
-            ├── gradle/, gradlew*        committed wrapper
-            └── src/main/resources/
-                ├── META-INF/plugin.xml
-                └── themes/
-                    ├── VesperGoldenDark.theme.json    dark UI theme
-                    ├── VesperGoldenDark.xml           dark editor scheme
-                    ├── VesperGoldenLight.theme.json   light UI theme
-                    └── VesperGoldenLight.xml          light editor scheme
+        └── theme/
+            ├── pack.sh           zip the "Vesper Golden/" folder into builds/
+            ├── manifest.json     theme name + version (version source of truth)
+            └── theme.css         full theme: chrome, markdown, code syntax
 ```
 
 ## Platforms
@@ -75,6 +81,7 @@ vesper-golden/
 |----------|-------|--------|--------|
 | VS Code (also Cursor, Windsurf, VSCodium) | High | Released | `*-color-theme.json` |
 | JetBrains / Android Studio | High | Builds and installs locally (dark + light) | `*.theme.json` UI + `*.xml` editor scheme |
+| Obsidian | Medium | Builds and installs locally (dark + light) | `manifest.json` + `theme.css` |
 
 More candidates (terminals, Slack, Obsidian, and so on) are tracked in `theme-platforms.md`.
 
@@ -83,10 +90,10 @@ More candidates (terminals, Slack, Obsidian, and so on) are tracked in `theme-pl
 `scripts/build.sh` is the one entry point. It writes every artifact to `builds/` at the repo root.
 
 ```
-scripts/build.sh            # interactive menu: all / vscode / jetbrains
+scripts/build.sh            # interactive menu: all / vscode / jetbrains / obsidian
 scripts/build.sh all        # build everything (CI-friendly)
 scripts/build.sh vscode     # build one
-scripts/build.sh vscode jetbrains
+scripts/build.sh vscode jetbrains obsidian
 scripts/build.sh list       # print known platforms
 ```
 
@@ -95,12 +102,15 @@ Output:
 ```
 builds/vesper-golden-vscode-<version>.vsix
 builds/vesper-golden-jetbrains-<version>.zip
+builds/vesper-golden-obsidian-<version>.zip
 ```
 
 ### How each platform builds
 
 - **vscode**: runs `vsce package` inside `platforms/vscode`, writing the `.vsix` to `builds/`. Needs `node`. First run pulls `@vscode/vsce` through `npx`.
 - **jetbrains**: runs `platforms/jetbrains/plugin/pack.sh`, which jars the plugin resources and zips the `<plugin>/lib/<jar>` layout the IDE expects. Stages in a temp dir and writes straight to `builds/`. Needs `jar` and `zip`, no network, no IntelliJ SDK. A theme plugin is pure resources, so nothing is compiled.
+
+- **obsidian**: runs `platforms/obsidian/theme/pack.sh`, which stages a `Vesper Golden/` folder (`manifest.json` + `theme.css`) and zips it into `builds/`. Needs `zip`, no network, nothing compiled. Install by extracting that folder into a vault's `.obsidian/themes/`. The version comes from the `version` field in `manifest.json`.
 
 There is also `./gradlew buildPlugin` for the JetBrains port. That is the official path but it downloads the IntelliJ SDK (around 1 GB) and writes to gradle's own `build/distributions/` rather than `builds/`. Use `pack.sh` for local work; reach for Gradle when publishing or running `./gradlew runIde` for a live sandbox IDE.
 
@@ -110,6 +120,7 @@ Full steps per platform are in `install.md`. Short version:
 
 - **VS Code**: install the `.vsix` with `code --install-extension builds/vesper-golden-vscode-<version>.vsix`, or search "Vesper Golden" in the Extensions view once published.
 - **Android Studio / JetBrains**: Settings > Plugins > gear > Install Plugin from Disk, pick `builds/vesper-golden-jetbrains-<version>.zip`, restart, then choose the theme under Appearance.
+- **Obsidian**: extract `builds/vesper-golden-obsidian-<version>.zip` into your vault's `.obsidian/themes/`, then pick "Vesper Golden" under Settings > Appearance > Themes.
 
 ## Adding a new platform
 

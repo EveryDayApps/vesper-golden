@@ -32,6 +32,7 @@ One palette, shared across editors, terminals, and tools.
 |----------|--------|-------|
 | VS Code (and Cursor, Windsurf, VSCodium) | Released | [`platforms/vscode`](platforms/vscode) |
 | JetBrains / Android Studio | Buildable locally | [`platforms/jetbrains`](platforms/jetbrains) |
+| Obsidian | Buildable locally | [`platforms/obsidian`](platforms/obsidian) |
 
 More ports (terminals, and other tools) are tracked in [`docs/theme-platforms.md`](docs/theme-platforms.md).
 
@@ -51,6 +52,7 @@ scripts/build.sh list       # print known platforms
 
 - **VS Code**: search "Vesper Golden" in the Extensions view, or see [`platforms/vscode/README.md`](platforms/vscode/README.md).
 - **Android Studio / JetBrains**: build and load the plugin by following [`docs/install.md`](docs/install.md).
+- **Obsidian**: build the theme zip and drop it in your vault, see [`docs/install.md`](docs/install.md).
 
 ## Repo layout
 
@@ -59,6 +61,7 @@ palette.json   canonical color database (source of truth for every port)
 platforms/
   vscode/      VS Code extension (released flagship port)
   jetbrains/   IntelliJ-platform plugin: UI theme + editor scheme
+  obsidian/    Obsidian theme: manifest.json + theme.css
 scripts/       build.sh: build any platform into builds/
 docs/          install guide, release runbook, platform map
 images/        screenshots used by the READMEs

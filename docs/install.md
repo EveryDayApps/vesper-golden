@@ -86,6 +86,43 @@ Launches a throwaway IntelliJ with the theme preloaded. Edit the files under `sr
 
 To uninstall: **Settings > Plugins**, find **Vesper Golden**, **Uninstall**, restart.
 
+## Obsidian
+
+A full theme: app chrome, markdown reading and edit views, and code-block syntax. Ships both variants (Dark and Light), switched with Obsidian's own light/dark toggle.
+
+### Build the theme zip
+
+From the repo root:
+
+```
+scripts/build.sh obsidian
+```
+
+This runs `pack.sh` under the hood (fast, no network, nothing compiled) and writes:
+
+```
+builds/vesper-golden-obsidian-1.0.0.zip
+```
+
+### Install it
+
+The zip holds a `Vesper Golden/` folder with `manifest.json` and `theme.css`.
+
+1. Extract the zip into your vault's themes folder: `<vault>/.obsidian/themes/`. You should end up with `<vault>/.obsidian/themes/Vesper Golden/`.
+2. In Obsidian, open **Settings > Appearance**.
+3. Under **Themes**, pick **Vesper Golden**.
+4. Use the **Base color scheme** toggle (Light / Dark) to switch variants.
+
+### Iterate on the theme (live reload)
+
+For editing the theme itself, point the build straight at a vault and reload:
+
+1. Copy `platforms/obsidian/theme/` to `<vault>/.obsidian/themes/Vesper Golden/` (or symlink it).
+2. Edit `theme.css`.
+3. In Obsidian, run the command **Reload app without saving** (or toggle the theme off and on) to see changes.
+
+To uninstall: delete the `Vesper Golden` folder under `<vault>/.obsidian/themes/`, or switch back to the default theme in **Settings > Appearance**.
+
 ## Where the colors come from
 
 Every scheme derives from `palette.json` at the repo root (the canonical color database, with both dark and light variants).
