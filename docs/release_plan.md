@@ -212,7 +212,11 @@ Prereq (one-time): a vendor account at plugins.jetbrains.com, and a **permanent 
 
 Publishes the theme to the **Obsidian community theme gallery** (Settings > Appearance > Themes > Manage).
 
-> How Obsidian fetches themes: the gallery reads `manifest.json` and `theme.css` from the **root of the default branch** of a public GitHub repo. There is no release-asset step (unlike plugins). Our files live at `platforms/obsidian/theme/`, not the repo root, so the gallery cannot read this monorepo directly. See O3.0 below for the one-time fix.
+> How Obsidian fetches themes (current flow, 2026): you publish a **GitHub Release** with `manifest.json` and `theme.css` attached as assets, then submit the repo URL through the **community directory** at community.obsidian.md. The old "open a PR against `obsidianmd/obsidian-releases`" path is gone: that repo has pull requests disabled.
+>
+> The release **tag must exactly equal** the `version` in `manifest.json` (e.g. tag `1.0.0` for version `1.0.0`). No `v` prefix, no `obsidian-` prefix. So the Obsidian track uses **bare semver tags**, unlike VS Code (`v<X.Y.Z>`) and JetBrains (`jetbrains-v<X.Y.Z>`); the three schemes do not collide.
+>
+> Because the directory reads the **release assets**, the files no longer have to sit at the repo root. We still keep root copies of `manifest.json` + `theme.css` (harmless, and handy for BRAT beta installs), but they are not what the directory consumes.
 
 ---
 
@@ -229,12 +233,11 @@ Single source of truth: the `version` field in `platforms/obsidian/theme/manifes
 
 ## O3.0 Publishing repo (one-time)
 
-The gallery needs `manifest.json` + `theme.css` at a repo root. Pick one, once, and reuse it every release:
+The community directory reads the theme from a public GitHub repo: it verifies ownership by your linked GitHub account and pulls `manifest.json` + `theme.css` from the **release assets** (see O4). The repo is this monorepo, `EveryDayApps/vesper-golden`. No mirror repo and no root-file requirement: the directory does not read the repo tree, only the release.
 
-- [ ] **Mirror repo (recommended)**: a dedicated public repo (e.g. `narayann7/vesper-golden-obsidian`) holding only the theme files at its root, plus a `README.md`, `LICENSE`, and screenshot. A release step copies `platforms/obsidian/theme/{manifest.json,theme.css}` to that repo root and pushes. Keeps this monorepo's layout clean.
-- [ ] **Files at monorepo root (not recommended)**: copy the two files to the repo root and point the gallery at `narayann7/vesper-golden`. Pollutes the root and competes with the multi-platform layout.
+We keep root copies of `manifest.json` + `theme.css` for convenience (BRAT beta installs, quick inspection); re-sync them each release with `cp platforms/obsidian/theme/{manifest.json,theme.css} .`. They are optional, not what the directory consumes.
 
-Record the chosen `repo` as `<obsidian-repo>` for the steps below.
+Record `EveryDayApps/vesper-golden` as `<obsidian-repo>` for the steps below.
 
 ---
 
@@ -265,40 +268,35 @@ Record the chosen `repo` as `<obsidian-repo>` for the steps below.
 
 ---
 
-## O3. Commit, sync publishing repo, tag
+## O3. Commit, sync root copies, release
 
 - [ ] Commit and push the monorepo changes.
-- [ ] Sync the publishing repo from O3.0: copy `platforms/obsidian/theme/{manifest.json,theme.css}` to `<obsidian-repo>` root, commit, push to its default branch.
-- [ ] Tag the shipped monorepo commit, prefixed to avoid colliding with the other tracks:
+- [ ] Re-sync the root copies: `cp platforms/obsidian/theme/{manifest.json,theme.css} .`, commit, push.
+- [ ] Cut a **GitHub Release** whose tag is the bare manifest version (no prefix), with the two files attached as assets:
   ```
-  git tag -a obsidian-v<X.Y.Z> -m "Vesper Golden (Obsidian) v<X.Y.Z>"
-  git push origin obsidian-v<X.Y.Z>
+  gh release create <X.Y.Z> manifest.json theme.css \
+    --repo <obsidian-repo> --target main \
+    --title "Vesper Golden (Obsidian) <X.Y.Z>" \
+    --notes "<change notes>"
   ```
+  The tag (`<X.Y.Z>`) MUST equal `version` in `manifest.json`. The directory rejects a mismatch.
 
 ---
 
-## O4. Publish to the Obsidian gallery
+## O4. Submit to the Obsidian community directory
 
-> **First release** adds the theme to the gallery via PR and is **reviewed by the Obsidian team** (can take days to weeks). **Updates** need no PR: bump `version` in the publishing repo's `manifest.json` and the gallery picks it up automatically.
+> **First release** is submitted once through the web portal and **auto-reviewed**; if it flags issues, fix them and cut a new release with a bumped version. **Updates** need no resubmission: cut a new GitHub Release with the bumped version/tag and the directory picks it up.
 
-- [ ] **First release**: fork `obsidianmd/obsidian-releases`, add an entry to `community-css-themes.json`:
-  ```json
-  {
-    "name": "Vesper Golden",
-    "author": "narayann7",
-    "repo": "<obsidian-repo>",
-    "screenshot": "<raw-screenshot-url>",
-    "modes": ["dark", "light"]
-  }
-  ```
-  Open a PR and follow the checklist in their PR template (theme guidelines, no external network calls, license present).
-- [ ] **Updates**: just push the new `manifest.json` version to `<obsidian-repo>` (done in O3). No PR.
+This step needs an Obsidian account and GitHub authorization, so a human runs it (an AI agent cannot log in):
+
+- [ ] **First release**: sign in at https://community.obsidian.md with your Obsidian account, link GitHub to verify ownership, open the **Themes** section, submit the repo URL (`https://github.com/<obsidian-repo>`), agree to the developer policies. Address any automated-review feedback by pushing a fix and cutting a new release (O3).
+- [ ] **Updates**: just cut a new GitHub Release with the bumped `version`/tag (O3). No resubmission.
 
 ---
 
 ## O5. Post-release
 
-- [ ] First release: PR merged, theme appears in Settings > Appearance > Themes > Manage.
+- [ ] First release: directory review passes, theme appears in Settings > Appearance > Themes > Manage.
 - [ ] Updates: gallery shows `<X.Y.Z>` within a day; users get the update prompt in Manage.
 - [ ] Install from the gallery in a clean vault and smoke-test both variants.
 
@@ -317,6 +315,6 @@ Record the chosen `repo` as `<obsidian-repo>` for the steps below.
 ## Optional: CI automation (future)
 - **VS Code**: GitHub Action on `v*` tag push: `npm ci` → `vsce package` → `vsce publish` + `ovsx publish`, using repo secrets `VSCE_PAT` and `OVSX_PAT`.
 - **JetBrains**: GitHub Action on `jetbrains-v*` tag push: `./gradlew buildPlugin` → `./gradlew publishPlugin`, using repo secret `PUBLISH_TOKEN` (and the signing secrets if enabled).
-- **Obsidian**: GitHub Action on `obsidian-v*` tag push: copy `platforms/obsidian/theme/{manifest.json,theme.css}` into the publishing repo and push (using a deploy key or PAT). No marketplace token: gallery updates pull from the repo. First-release PR stays manual.
+- **Obsidian**: GitHub Action on a bare-semver tag push (e.g. `1.0.0`, matching `manifest.json`): cut a GitHub Release attaching `manifest.json` + `theme.css`. No marketplace token: the community directory pulls updates from the release. The first-release portal submission at community.obsidian.md stays manual (needs an Obsidian-account login).
 
 The first two remove the manual token handling above; Obsidian needs no marketplace secret at all.
