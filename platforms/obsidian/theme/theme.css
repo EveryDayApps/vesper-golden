@@ -150,38 +150,40 @@
 }
 
 /* ------------------------------------------------------- code: editor ----- */
-/* CodeMirror token classes inside code blocks (live preview / source). */
-.cm-s-obsidian .cm-comment,
-.cm-s-obsidian .HyperMD-codeblock .cm-comment {
-  color: var(--vg-syn-comment) !important;
+/* CodeMirror token classes inside code blocks (live preview / source).
+ * The class is doubled (.cm-s-obsidian.cm-s-obsidian) to out-specify
+ * Obsidian's default token colors through specificity alone. */
+.cm-s-obsidian.cm-s-obsidian .cm-comment,
+.cm-s-obsidian.cm-s-obsidian .HyperMD-codeblock .cm-comment {
+  color: var(--vg-syn-comment);
   font-style: italic;
 }
-.cm-s-obsidian .cm-keyword,
-.cm-s-obsidian .cm-operator,
-.cm-s-obsidian .cm-meta {
-  color: var(--vg-syn-keyword) !important;
+.cm-s-obsidian.cm-s-obsidian .cm-keyword,
+.cm-s-obsidian.cm-s-obsidian .cm-operator,
+.cm-s-obsidian.cm-s-obsidian .cm-meta {
+  color: var(--vg-syn-keyword);
 }
-.cm-s-obsidian .cm-def,
-.cm-s-obsidian .cm-builtin,
-.cm-s-obsidian .cm-tag,
-.cm-s-obsidian .cm-atom,
-.cm-s-obsidian .cm-number,
-.cm-s-obsidian .cm-type,
-.cm-s-obsidian .cm-variable-2,
-.cm-s-obsidian .cm-variable-3 {
-  color: var(--vg-syn-accent) !important;
+.cm-s-obsidian.cm-s-obsidian .cm-def,
+.cm-s-obsidian.cm-s-obsidian .cm-builtin,
+.cm-s-obsidian.cm-s-obsidian .cm-tag,
+.cm-s-obsidian.cm-s-obsidian .cm-atom,
+.cm-s-obsidian.cm-s-obsidian .cm-number,
+.cm-s-obsidian.cm-s-obsidian .cm-type,
+.cm-s-obsidian.cm-s-obsidian .cm-variable-2,
+.cm-s-obsidian.cm-s-obsidian .cm-variable-3 {
+  color: var(--vg-syn-accent);
 }
-.cm-s-obsidian .cm-string,
-.cm-s-obsidian .cm-string-2 {
-  color: var(--vg-syn-string) !important;
+.cm-s-obsidian.cm-s-obsidian .cm-string,
+.cm-s-obsidian.cm-s-obsidian .cm-string-2 {
+  color: var(--vg-syn-string);
 }
-.cm-s-obsidian .cm-variable,
-.cm-s-obsidian .cm-property {
-  color: var(--vg-syn-var) !important;
+.cm-s-obsidian.cm-s-obsidian .cm-variable,
+.cm-s-obsidian.cm-s-obsidian .cm-property {
+  color: var(--vg-syn-var);
 }
-.cm-s-obsidian .cm-punctuation,
-.cm-s-obsidian .cm-bracket {
-  color: var(--vg-syn-muted) !important;
+.cm-s-obsidian.cm-s-obsidian .cm-punctuation,
+.cm-s-obsidian.cm-s-obsidian .cm-bracket {
+  color: var(--vg-syn-muted);
 }
 
 /* ------------------------------------------------------ code: reading ----- */
