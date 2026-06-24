@@ -1,0 +1,9 @@
+# Vesper Golden: Slack sidebar themes
+# Paste a line into Slack > Preferences > Themes > Colors > "Copy and paste theme values".
+# Order: Column BG, Menu BG Hover, Active Item, Active Item Text, Hover Item, Text Color, Active Presence, Mention Badge.
+
+# dark
+#0A0908,#1C1C1C,#FFBF3B,#0A0908,#FFFFFF,#AFACA7,#7CB342,#FF8080
+
+# light
+#FEFEFE,#F5F5F5,#FFBF3B,#2C2C2C,#2C2C2C,#616161,#388E3C,#D32F2F

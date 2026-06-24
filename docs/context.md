@@ -69,12 +69,18 @@ vesper-golden/
     │               ├── VesperGoldenDark.xml           dark editor scheme
     │               ├── VesperGoldenLight.theme.json   light UI theme
     │               └── VesperGoldenLight.xml          light editor scheme
-    └── obsidian/          Obsidian theme (dark + light in one theme.css)
+    ├── obsidian/          Obsidian theme (dark + light in one theme.css)
+    │   ├── README.md
+    │   └── theme/
+    │       ├── pack.sh           zip the "Vesper Golden/" folder into builds/
+    │       ├── manifest.json     theme name + version (version source of truth)
+    │       └── theme.css         full theme: chrome, markdown, code syntax
+    └── zed/               Zed theme extension (dark + light in one family file)
         ├── README.md
-        └── theme/
-            ├── pack.sh           zip the "Vesper Golden/" folder into builds/
-            ├── manifest.json     theme name + version (version source of truth)
-            └── theme.css         full theme: chrome, markdown, code syntax
+        ├── pack.sh               zip the "vesper-golden/" extension into builds/
+        ├── extension.toml        extension name + version (version source of truth)
+        └── themes/
+            └── vesper-golden.json   theme family: Vesper Golden Dark + Light
 ```
 
 ## Platforms
@@ -84,6 +90,7 @@ vesper-golden/
 | VS Code (also Cursor, Windsurf, VSCodium) | High | Released | `*-color-theme.json` |
 | JetBrains / Android Studio | High | Builds and installs locally (dark + light) | `*.theme.json` UI + `*.xml` editor scheme |
 | Obsidian | Medium | Released (community gallery) | `manifest.json` + `theme.css` |
+| Zed | Medium | Builds and installs locally (dark + light) | `extension.toml` + `themes/*.json` |
 
 More candidates (terminals, Slack, Obsidian, and so on) are tracked in `theme-platforms.md`.
 
@@ -105,6 +112,7 @@ Output:
 builds/vesper-golden-vscode-<version>.vsix
 builds/vesper-golden-jetbrains-<version>.zip
 builds/vesper-golden-obsidian-<version>.zip
+builds/vesper-golden-zed-<version>.zip
 ```
 
 ### How each platform builds
@@ -116,6 +124,8 @@ builds/vesper-golden-obsidian-<version>.zip
 
   Publishing is via a **GitHub Release**: the Obsidian community directory reads `manifest.json` + `theme.css` from the release assets (tag must equal the manifest version, bare semver), and the listing is submitted once at community.obsidian.md. Root copies of both files mirror `platforms/obsidian/theme/` for convenience (BRAT beta installs, quick inspection); re-sync them each release with `cp platforms/obsidian/theme/{manifest.json,theme.css} .`. They are optional, not what the directory consumes. Full steps in `release_plan.md` (Part 3).
 
+- **zed**: runs `platforms/zed/pack.sh`, which stages a `vesper-golden/` folder (`extension.toml` + `themes/vesper-golden.json`) and zips it into `builds/`. Needs `zip`, no network, nothing compiled. For local use you can skip the build and copy `themes/vesper-golden.json` straight into `~/.config/zed/themes/`. The version comes from the `version` field in `extension.toml`.
+
 There is also `./gradlew buildPlugin` for the JetBrains port. That is the official path but it downloads the IntelliJ SDK (around 1 GB) and writes to gradle's own `build/distributions/` rather than `builds/`. Use `pack.sh` for local work; reach for Gradle when publishing or running `./gradlew runIde` for a live sandbox IDE.
 
 ## Installing locally
@@ -125,6 +135,7 @@ Full steps per platform are in `install.md`. Short version:
 - **VS Code**: install the `.vsix` with `code --install-extension builds/vesper-golden-vscode-<version>.vsix`, or search "Vesper Golden" in the Extensions view once published.
 - **Android Studio / JetBrains**: Settings > Plugins > gear > Install Plugin from Disk, pick `builds/vesper-golden-jetbrains-<version>.zip`, restart, then choose the theme under Appearance.
 - **Obsidian**: extract `builds/vesper-golden-obsidian-<version>.zip` into your vault's `.obsidian/themes/`, then pick "Vesper Golden" under Settings > Appearance > Themes.
+- **Zed**: copy `platforms/zed/themes/vesper-golden.json` into `~/.config/zed/themes/`, then pick "Vesper Golden Dark" / "Light" with `cmd-k cmd-t`. Or install the zip's `vesper-golden/` folder via Extensions > Install Dev Extension.
 
 ## Adding a new platform
 

@@ -1,0 +1,7 @@
+id = "vesper-golden"
+name = "Vesper Golden"
+version = "1.0.0"
+schema_version = 1
+authors = ["EveryDayApps <https://github.com/EveryDayApps>"]
+description = "Warm gold-on-black theme: gold accent on a near-black background. Dark and light."
+repository = "https://github.com/EveryDayApps/vesper-golden"

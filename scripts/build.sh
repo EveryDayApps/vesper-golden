@@ -20,7 +20,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DIST="$ROOT/builds"
 
-PLATFORMS="vscode jetbrains obsidian"
+PLATFORMS="vscode jetbrains obsidian zed"
 
 log()  { printf '\033[1;33m==>\033[0m %s\n' "$*" >&2; }
 warn() { printf '\033[1;31m!!\033[0m %s\n' "$*" >&2; }
@@ -61,6 +61,16 @@ build_obsidian() {
   [ -x "$dir/pack.sh" ] || die "obsidian: $dir/pack.sh not found or not executable"
 
   log "obsidian: packing theme"
+  # pack.sh writes straight into builds/ and prints the final zip path.
+  "$dir/pack.sh"
+}
+
+build_zed() {
+  need zip
+  local dir="$ROOT/platforms/zed"
+  [ -x "$dir/pack.sh" ] || die "zed: $dir/pack.sh not found or not executable"
+
+  log "zed: packing theme"
   # pack.sh writes straight into builds/ and prints the final zip path.
   "$dir/pack.sh"
 }

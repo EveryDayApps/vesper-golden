@@ -33,6 +33,7 @@ One palette, shared across editors, terminals, and tools.
 | VS Code (and Cursor, Windsurf, VSCodium) | Released | [`platforms/vscode`](platforms/vscode) |
 | JetBrains / Android Studio | Buildable locally | [`platforms/jetbrains`](platforms/jetbrains) |
 | Obsidian | Released | [community gallery](https://community.obsidian.md/themes/vesper-golden) |
+| Zed | Buildable locally | [`platforms/zed`](platforms/zed) |
 
 More ports (terminals, and other tools) are tracked in [`docs/theme-platforms.md`](docs/theme-platforms.md).
 
@@ -53,6 +54,7 @@ scripts/build.sh list       # print known platforms
 - **VS Code**: search "Vesper Golden" in the Extensions view, or see [`platforms/vscode/README.md`](platforms/vscode/README.md).
 - **Android Studio / JetBrains**: build and load the plugin by following [`docs/install.md`](docs/install.md).
 - **Obsidian**: **Settings > Appearance > Themes > Manage**, search "Vesper Golden". Also in the [community gallery](https://community.obsidian.md/themes/vesper-golden). Local build steps are in [`docs/install.md`](docs/install.md).
+- **Zed**: copy `platforms/zed/themes/vesper-golden.json` into `~/.config/zed/themes/`, then pick "Vesper Golden Dark" / "Light" with `cmd-k cmd-t`. See [`platforms/zed/README.md`](platforms/zed/README.md).
 
 ## Repo layout
 
@@ -62,6 +64,7 @@ platforms/
   vscode/      VS Code extension (released flagship port)
   jetbrains/   IntelliJ-platform plugin: UI theme + editor scheme
   obsidian/    Obsidian theme: manifest.json + theme.css
+  zed/         Zed theme extension: extension.toml + themes/*.json
 scripts/       build.sh: build any platform into builds/
 docs/          install guide, release runbook, platform map
 images/        screenshots used by the READMEs

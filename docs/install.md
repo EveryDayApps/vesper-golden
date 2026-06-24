@@ -131,6 +131,51 @@ For editing the theme itself, point the build straight at a vault and reload:
 
 To uninstall: delete the `Vesper Golden` folder under `<vault>/.obsidian/themes/`, or switch back to the default theme in **Settings > Appearance**.
 
+## Zed
+
+A theme family (Dark and Light) covering editor syntax, terminal ANSI, and app chrome. Zed picks the variant from its own appearance toggle, or you select one directly.
+
+### Install locally (no build)
+
+The fastest path: copy the theme file into Zed's user themes directory.
+
+```
+cp platforms/zed/themes/vesper-golden.json ~/.config/zed/themes/
+```
+
+Open the theme selector with `cmd-k cmd-t` (or **Settings > Theme**) and pick **Vesper Golden Dark** or **Vesper Golden Light**.
+
+### Build the extension zip
+
+From the repo root:
+
+```
+scripts/build.sh zed
+```
+
+This runs `pack.sh` under the hood (fast, no network, nothing compiled) and writes:
+
+```
+builds/vesper-golden-zed-1.0.0.zip
+```
+
+### Install it as a dev extension
+
+The zip holds a `vesper-golden/` folder with `extension.toml` and `themes/vesper-golden.json`.
+
+1. Extract the zip somewhere stable.
+2. In Zed, open the command palette and run **zed: install dev extension**, then pick the extracted `vesper-golden/` folder.
+3. Open the theme selector (`cmd-k cmd-t`) and pick **Vesper Golden Dark** / **Light**.
+
+### Iterate on the theme (live reload)
+
+Zed live-reloads files in `~/.config/zed/themes/`, so for editing the theme itself:
+
+1. Copy or symlink `platforms/zed/themes/vesper-golden.json` into `~/.config/zed/themes/`.
+2. Edit the file and save. Zed reapplies the theme on save.
+
+To uninstall: delete `~/.config/zed/themes/vesper-golden.json`, or remove the dev extension from the Extensions view, then pick another theme.
+
 ## Where the colors come from
 
 Every scheme derives from `palette.json` at the repo root (the canonical color database, with both dark and light variants).

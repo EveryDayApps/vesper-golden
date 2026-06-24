@@ -10,7 +10,7 @@ Targets where a "Vesper Golden" theme family can ship. Grouped by effort and rea
 | **Cursor** | VS Code JSON (same) | Uses OpenVSX | Free: same package installs. |
 | **Windsurf** | VS Code JSON (same) | OpenVSX | Free: same package. |
 | **VSCodium** | VS Code JSON (same) | OpenVSX | Free: same package. |
-| **JetBrains (IntelliJ/PyCharm/WebStorm/etc.)** | `.xml` editor scheme + `.theme.json` UI | JetBrains Marketplace | Big audience. Separate plugin project. |
+| **JetBrains (IntelliJ/PyCharm/WebStorm/etc.)** | `.xml` editor scheme + `.theme.json` UI | JetBrains Marketplace | Shipped. Separate plugin project. |
 | **Sublime Text** | `.sublime-color-scheme` (JSON) or `.tmTheme` (XML plist) | Package Control | tmTheme is portable base format. |
 | **Zed** | `.json` theme | Zed extensions repo | Growing fast. Simple JSON. |
 | **Neovim** | Lua colorscheme | GitHub (lazy/packer) | Highest dev-cred. Lua + highlight groups. |
@@ -68,7 +68,7 @@ Targets where a "Vesper Golden" theme family can ship. Grouped by effort and rea
 1. VS Code (done): also covers Cursor/Windsurf/VSCodium free.
 2. **Define palette as single source** (`palette.json` or Base16 YAML).
 3. **iTerm2 + Windows Terminal + Alacritty**: cheap, high visual payoff.
-4. **JetBrains**: large separate audience.
+4. **JetBrains** (done): large separate audience.
 5. **Neovim + tmux**: dev-cred, screenshot-friendly combos.
 6. **Sublime `.tmTheme`**: unlocks bat + delta for free.
 7. Long tail (Slack/Discord and the rest) as community asks. Obsidian is already shipped.
