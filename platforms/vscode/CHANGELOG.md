@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.0.1] - 2026-06-25
+
+#### Fixed
+
+- Preview images in the README now load on the Marketplace and Open VSX listings. The URLs pointed at `images/` but the files live under `images/vscode/`.
+
 ## [1.0.0] - 2026-06-18
 
 First stable release. Now ships **two** themes: `Vesper Golden Dark` and `Vesper Golden Light`.

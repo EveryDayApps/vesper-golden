@@ -33,15 +33,15 @@ A Visual Studio Code theme inspired by Vesper with a golden touch, available in 
 
 #### 🌙 Dark
 
-![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_one.png)
-![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_two.png)
-![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/dark_three.png)
+![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/vscode/dark_one.png)
+![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/vscode/dark_two.png)
+![dark preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/vscode/dark_three.png)
 
 #### ☀️ Light
 
-![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_one.png)
-![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_two.png)
-![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/light_three.png)
+![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/vscode/light_one.png)
+![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/vscode/light_two.png)
+![light preview](https://raw.githubusercontent.com/EveryDayApps/vesper-golden/main/images/vscode/light_three.png)
 
 ### 📦 Installation
 
