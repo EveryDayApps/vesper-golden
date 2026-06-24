@@ -5,6 +5,7 @@ A repeatable playbook to release each platform. Three independent tracks:
 - **Part 1: VS Code** to the **VS Code Marketplace** and **Open VSX**.
 - **Part 2: JetBrains** (Android Studio, IntelliJ, and the rest) to the **JetBrains Marketplace**.
 - **Part 3: Obsidian** to the **Obsidian community theme gallery**.
+- **Part 4: Zed** to the **Zed extension registry**.
 
 The tracks ship on their own versions and schedules; you do not have to release them together. Replace `<X.Y.Z>` with the target version. Any AI agent or human can execute a track top-to-bottom.
 
@@ -299,6 +300,84 @@ This step needs an Obsidian account and GitHub authorization, so a human runs it
 - [ ] First release: directory review passes, theme appears in Settings > Appearance > Themes > Manage.
 - [ ] Updates: gallery shows `<X.Y.Z>` within a day; users get the update prompt in Manage.
 - [ ] Install from the gallery in a clean vault and smoke-test both variants.
+
+---
+
+# Part 4: Zed
+
+Publishes the theme extension to the **Zed extension registry** (Zed > Extensions). A Zed theme is pure resources (`extension.toml` + `themes/*.json`): nothing is compiled.
+
+> How Zed distributes extensions (current flow, 2026): the registry is the public repo `zed-industries/extensions`. You add your extension to it as a **git submodule** plus a row in its `extensions.toml`, then open a **PR**. Once merged, Zed builds and serves it; users install from **Extensions** inside the app. There is no per-publisher token and no marketplace upload.
+>
+> The repo (`EveryDayApps/vesper-golden`) is the submodule source. The registry points at a commit of this repo, so each release is just a newer commit plus a version bump in the registry's `extensions.toml`.
+>
+> Working directory: the extension lives under `platforms/zed/`. `build.sh` runs from the repo root.
+
+---
+
+## Z0. Choose the version
+
+Semver, same rules as Part 1 (renaming the theme is breaking because it changes what users have selected).
+
+Single source of truth: the `version` field in `platforms/zed/extension.toml`. `pack.sh` reads it and stamps the zip name.
+- [ ] Set `version = "<X.Y.Z>"` in `extension.toml`.
+
+`schema_version` only changes if Zed's extension format changes; leave it unless the docs say otherwise.
+
+---
+
+## Z1. Apply file changes
+
+### Z1.1 `extension.toml`
+- [ ] `version` set (Z0), `id` is `vesper-golden`, `name` is exactly `Vesper Golden` (this is what users select; renaming breaks them).
+- [ ] `authors`, `repository`, `description` point at the current GitHub account/repo.
+
+### Z1.2 `themes/vesper-golden.json`
+- [ ] Colors are in step with `palette.json` at the repo root (both `Vesper Golden Dark` and `Vesper Golden Light` blocks).
+- [ ] `name` of each theme matches what users select (renaming breaks their setting).
+
+### Z1.3 Validate
+- [ ] Theme JSON parses: `python3 -c "import json;json.load(open('platforms/zed/themes/vesper-golden.json'))"` (or `node -e "require('./platforms/zed/themes/vesper-golden.json')"`).
+
+---
+
+## Z2. Build & verify locally
+
+- [ ] Build the zip from the repo root: `scripts/build.sh zed` → `builds/vesper-golden-zed-<X.Y.Z>.zip`. No network, nothing compiled.
+- [ ] Live install without building: `cp platforms/zed/themes/vesper-golden.json ~/.config/zed/themes/`, then `cmd-k cmd-t` and pick **Vesper Golden Dark** / **Light**. Zed live-reloads on save.
+- [ ] Dev-extension install: **Extensions > Install Dev Extension**, point at the `vesper-golden/` folder inside the built zip. Eyeball editor syntax, terminal, tabs, panels, status bar in both variants.
+
+---
+
+## Z3. Commit, tag, GitHub Release
+
+- [ ] Commit and push the monorepo changes.
+- [ ] Tag the shipped commit. To avoid colliding with the other tracks' tags, prefix the Zed tag:
+  ```
+  git tag -a zed-v<X.Y.Z> -m "Vesper Golden (Zed) v<X.Y.Z>"
+  git push origin zed-v<X.Y.Z>
+  ```
+- [ ] (Optional) Create a GitHub Release and attach `builds/vesper-golden-zed-<X.Y.Z>.zip`. The registry does not consume it; it is for direct download.
+
+---
+
+## Z4. Publish to the Zed extension registry
+
+Prereq: a GitHub account (the registry is a public repo; no token or marketplace login).
+
+> The **first** publish adds the extension to `zed-industries/extensions`. **Updates** bump the submodule pointer and the version in that repo's `extensions.toml`. Both are PRs that a Zed maintainer merges.
+
+- [ ] Fork `zed-industries/extensions`.
+- [ ] **First release**: add this repo as a submodule under `extensions/vesper-golden`, add a `[vesper-golden]` row to `extensions.toml` (`submodule`, `version`, `path`), commit, open a PR. Follow the repo's `CONTRIBUTING` for the exact layout.
+- [ ] **Updates**: in your fork, update the submodule to the new commit and bump `version` under `[vesper-golden]` in `extensions.toml` to `<X.Y.Z>`, commit, open a PR.
+- [ ] Verify after merge: the version shows on the extension in Zed's **Extensions** view (allow for the registry build + index lag).
+
+---
+
+## Z5. Post-release
+
+- [ ] Confirm the registry shows `<X.Y.Z>` once the PR merges and builds.
+- [ ] Install from **Extensions** in a clean Zed and smoke-test both variants.
 
 ---
 
