@@ -19,8 +19,10 @@
   <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <themeProvider id="vesper-golden-dark" path="/themes/VesperGoldenDark.theme.json"/>
+    <!-- Light first, dark last: on install the IDE applies the LAST themeProvider,
+         so declaring dark last makes Vesper Golden Dark the default applied theme. -->
     <themeProvider id="vesper-golden-light" path="/themes/VesperGoldenLight.theme.json"/>
+    <themeProvider id="vesper-golden-dark" path="/themes/VesperGoldenDark.theme.json"/>
     <!-- Register the editor schemes so they appear in Settings > Editor > Color Scheme
          and apply with each theme. path has no extension; the files are *.xml. -->
     <bundledColorScheme path="/themes/VesperGoldenDark"/>
